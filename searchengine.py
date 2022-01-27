@@ -2,7 +2,6 @@
 
 
 """
-When you have worked through the tutorial on Boolean search, it is time to create your own search application.
 Copy over the relevant code from the tutorial notebook into your own Python program. Then extend the program with some cool features:
 
 1. The queries should not be hard-coded. Instead your program should ask the user to type the query. Make this run in a loop, so that the user can run as many queries they like. Also come up with some user input that tells the program to quit, such as an empty string or a specific keyword.
