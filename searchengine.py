@@ -14,7 +14,15 @@ DOCUMENTS = ["This is a silly example",
              "Nothing to see here",
              "This is a great and long example"]
 
-QUERY = "NOT example OR great"
+
+def get_query():
+    while True:
+        user_input = input("Please enter a query: ")
+        query = user_input.strip()
+        if query:
+            return str(query)
+        else:
+            return None
 
 
 def rewrite_token(t):
@@ -30,7 +38,12 @@ if __name__ == '__main__':
     sparse_matrix = cv.fit_transform(DOCUMENTS)
     sparse_td_matrix = sparse_matrix.T.tocsr()
     t2i = cv.vocabulary_
-    hits_matrix = eval(rewrite_query(QUERY))
-    hits_list = list(hits_matrix.nonzero()[1])
-    for i, doc_idx in enumerate(hits_list):
-        print("Matching doc #{:d}: {:s}".format(i, DOCUMENTS[doc_idx]))
+    while True:
+        query = get_query()
+        if query is not None:
+            hits_matrix = eval(rewrite_query(query))
+            hits_list = list(hits_matrix.nonzero()[1])
+            for i, doc_idx in enumerate(hits_list):
+                print("Matching doc #{:d}: {:s}".format(i, DOCUMENTS[doc_idx]))
+        else:
+            break
