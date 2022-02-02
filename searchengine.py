@@ -12,7 +12,8 @@ D = {"and": "&", "AND": "&",
 DOCUMENTS = ["This is a silly example",
              "A better example",
              "Nothing to see here",
-             "This is a great and long example"]
+             "This is a great and long example",
+             "That was the real catch-22. The year 1923."]
 
 
 def get_query():
@@ -34,7 +35,7 @@ def rewrite_query(query):
 
 
 if __name__ == '__main__':
-        cv = CountVectorizer(lowercase=True, binary=True)
+        cv = CountVectorizer(lowercase=True, binary=True, token_pattern=r'(?u)\b\w\w*\b') # The pattern now accepts tokens of lenght 1 such as "a"
         sparse_matrix = cv.fit_transform(DOCUMENTS)
         sparse_td_matrix = sparse_matrix.T.tocsr()
         t2i = cv.vocabulary_
