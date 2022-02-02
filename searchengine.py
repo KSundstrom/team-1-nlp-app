@@ -2,7 +2,12 @@
 
 
 from sklearn.feature_extraction.text import CountVectorizer
+from bs4 import BeautifulSoup as bs
+from urllib import request
 
+
+
+ 
 
 D = {"and": "&", "AND": "&",
      "or": "|", "OR": "|",
@@ -14,6 +19,11 @@ DOCUMENTS = ["This is a silly example",
              "Nothing to see here",
              "This is a great and long example",
              "That was the real catch-22. The year 1923."]
+
+# Read the database file
+content = []
+url = "https://www.gutenberg.org/cache/epub/1041/pg1041.txt"
+html = request.urlopen(url).read().decode('utf8')
 
 
 def get_query():
