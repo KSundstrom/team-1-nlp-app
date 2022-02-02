@@ -3,8 +3,6 @@
 
 from sklearn.feature_extraction.text import CountVectorizer
 from bs4 import BeautifulSoup
-from urllib import request
-import re
 
 
 D = {"and": "&", "AND": "&",
@@ -13,20 +11,6 @@ D = {"and": "&", "AND": "&",
      "(": "(", ")": ")"}
 
 ARTICLES_FILENAME = "enwiki-20181001-corpus.1000-articles.txt"
-
-SONNETS_URL = "https://www.gutenberg.org/cache/epub/1041/pg1041.txt"
-
-
-def get_source():
-    print()
-    while True:
-        user_input = input("Please type ‘a’ to use articles or ‘s’ to use sonnets as documents: ")
-        if user_input == "a":
-            print("Using articles as documents…")
-            return "a"
-        elif user_input == "s":
-            print("Using sonnets as documents…")
-            return "s"
 
 
 def get_articles():
@@ -39,18 +23,6 @@ def get_articles():
         return articles
     except OSError:
         print("Error trying to read from file {:s}!".format(ARTICLES_FILENAME))
-
-
-def get_sonnets():
-    html = request.urlopen(SONNETS_URL).read().decode('utf8')
-    newlines_removed = html.replace("\r\n", "#")
-    pattern = '((?#*)[IVXLC]+#+)'
-    sonnets_hash = re.split(pattern, newlines_removed)
-    sonnets = []
-    for sonnet in sonnets_hash:
-        sonnet = sonnet.replace("#", "")
-        sonnets.append(sonnet)
-    return sonnets
 
 
 def get_query():
@@ -68,11 +40,7 @@ def rewrite_query(query):
 
 def main():
     cv = CountVectorizer(lowercase=True, binary=True, token_pattern=r'(?u)\b\w\w*\b')
-    source = get_source()
-    if source == "a":
-        documents = get_articles()
-    elif source == "s":
-        documents = get_sonnets()
+    documents = get_articles()
     sparse_matrix = cv.fit_transform(documents)
     sparse_td_matrix = sparse_matrix.T.tocsr()
     while True:
