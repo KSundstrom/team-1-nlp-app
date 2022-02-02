@@ -34,16 +34,19 @@ def rewrite_query(query):
 
 
 if __name__ == '__main__':
-    cv = CountVectorizer(lowercase=True, binary=True)
-    sparse_matrix = cv.fit_transform(DOCUMENTS)
-    sparse_td_matrix = sparse_matrix.T.tocsr()
-    t2i = cv.vocabulary_
-    while True:
-        query = get_query()
-        if query is not None:
-            hits_matrix = eval(rewrite_query(query))
-            hits_list = list(hits_matrix.nonzero()[1])
-            for i, doc_idx in enumerate(hits_list):
-                print("Matching doc #{:d}: {:s}".format(i, DOCUMENTS[doc_idx]))
-        else:
-            break
+        cv = CountVectorizer(lowercase=True, binary=True)
+        sparse_matrix = cv.fit_transform(DOCUMENTS)
+        sparse_td_matrix = sparse_matrix.T.tocsr()
+        t2i = cv.vocabulary_
+        while True:
+            try:    
+                query = get_query()
+                if query is not None:
+                    hits_matrix = eval(rewrite_query(query))
+                    hits_list = list(hits_matrix.nonzero()[1])
+                    for i, doc_idx in enumerate(hits_list):
+                        print("Matching doc #{:d}: {:s}".format(i, DOCUMENTS[doc_idx]))
+                else:
+                    break
+            except KeyError:
+                print("Your search provided no results, please try another query or hit enter to exit the program.")
