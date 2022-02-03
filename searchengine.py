@@ -12,7 +12,7 @@ D = {"and": "&", "AND": "&",
      "not": "1 -", "NOT": "1 -",
      "(": "(", ")": ")"}
 
-ARTICLES_FILENAME = "enwiki-20181001-corpus.1000-articles.txt"
+ARTICLES_FILENAME = "fiwiki-20181001-corpus.truncated.txt"
 
 SONNETS_URL = "https://www.gutenberg.org/cache/epub/1041/pg1041.txt"
 
