@@ -43,12 +43,12 @@ def get_query():
     return input("Please enter a query or press enter to exit: ").strip()
 
 
-def rewrite_token(t):
-    return D.get(t, 'sparse_td_matrix[cv.vocabulary_["{:s}"]].todense()'.format(t))
+def rewrite_token(token):
+    return D.get(token, 'c_matrix[cv.vocabulary_["{:s}"]].todense()'.format(token))
 
 
 def rewrite_query(query):
-    return " ".join(rewrite_token(t) for t in query.split())
+    return " ".join(rewrite_token(token) for token in query.split())
 
 
 def boolean_search(query):
@@ -71,9 +71,10 @@ def tfidf_cosine_search(query):
 
 
 if __name__ == '__main__':
+    print("Initializing…")
     documents = get_articles()
     cv = CountVectorizer(lowercase=True, binary=True, token_pattern=r'(?u)\b\w\w*\b')
-    c_matrix = cv.cv.fit_transform(documents).T.tocsr()
+    c_matrix = cv.fit_transform(documents).T.tocsr()
     tv = TfidfVectorizer(lowercase=True, sublinear_tf=True, use_idf=True, norm="l2")
     t_matrix = tv.fit_transform(documents).T.tocsr()
     engine = get_engine()
@@ -86,6 +87,7 @@ if __name__ == '__main__':
                 elif engine == "t":
                     tfidf_cosine_search(query)
             else:
+                print("Exiting…")
                 break
         except KeyError:
             print("Your query produced no results, please try another query.")
