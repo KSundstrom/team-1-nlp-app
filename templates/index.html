@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head lang="en" dir="ltr">
+        <meta charset="utf-8"/>
+        <meta name="description" content="Search engine using Flask"/>
+        <meta name="creator" content="Team One"/>
+        <title>Search engine</title>
+    </head>
+    <body>
+        <header>
+            <h1>Search engine</h1>
+            <hr/>
+        </header>
+        <main>
+            <section>
+                <form>
+                    <input type="text" name="query" autofocus/>
+                    <input type="submit" value="Search"/>
+                </form>
+            </section>
+            <hr/>
+            <section>
+                <table>
+                    <caption>Results</caption>
+                    <thead>
+                        <tr>
+                            <th>Document name</th>
+                            <th>Document content</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in matches %}
+                        <tr>
+                            <th>
+                                {{ item['name'] }}
+                            </th>
+                            <td>
+                                {{ item['content'] }}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                    <tfoot>
+                    </tfoot>
+                </table>
+            </section>
+        </main>
+        <footer>
+            <hr/>
+            <p>Made by Team One in 2022</p>
+        </footer>
+    </body>
+</html>
