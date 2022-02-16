@@ -38,8 +38,8 @@ forecasts_text = p_list[1:-8]
 
 print(title)
 print(warnings_forecasts)
-print(places)
-print(forecasts_text)
+print(len(places))
+print(len(forecasts_text))
 
 #print(h1_list)
 #print(h2_list)
