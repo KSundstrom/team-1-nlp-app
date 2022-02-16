@@ -1,0 +1,59 @@
+#!/usr/bin/env python3
+
+from bs4 import BeautifulSoup
+import requests
+
+HTML_PAGE = requests.get('https://en.ilmatieteenlaitos.fi/weather-and-sea')
+
+
+# Get the web page and select the appropriate div.
+soup = BeautifulSoup(HTML_PAGE.content, 'html.parser')
+select = soup.find('div', class_="col-lg-9 px-0")
+
+# Name the tags we want to extract from the div that we set earlier
+wanted_tags = ["h1", "h2", "h3", "p"]
+h1_list = []
+h2_list = []
+h3_list = []
+p_list = []
+
+# Separate the plain text by tag to lists
+for tag in wanted_tags:
+    for instance in soup.find_all(tag):
+       #print(f"{instance.name} -> {instance.text.strip()}")
+        if tag == "h1":
+            h1_list.append(instance.text.strip())
+
+        if tag == "h2":
+            h2_list.append(instance.text.strip())
+        if tag == "h3":
+            h3_list.append(instance.text.strip())
+        if tag == "p":
+            p_list.append(instance.text.strip())
+
+title = h1_list[0]
+warnings_forecasts = h2_list[:-1]
+places = h3_list[:-7]
+forecasts_text = p_list[1:-8]
+
+entry = {}
+entry['title'] = title
+for item in places:
+    entry['place'] = places[places.index(item)]
+    entry['warning/forecast'] = forecasts_text[places.index(item)]
+
+print(entry)
+print(title)
+print(warnings_forecasts)
+print(len(places))
+print(len(forecasts_text))
+
+#print(h1_list)
+#print(h2_list)
+#print(h3_list)
+#print(p_list)
+ 
+
+
+
+
