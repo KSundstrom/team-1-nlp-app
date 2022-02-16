@@ -36,6 +36,13 @@ warnings_forecasts = h2_list[:-1]
 places = h3_list[:-7]
 forecasts_text = p_list[1:-8]
 
+entry = {}
+entry['title'] = title
+for item in places:
+    entry['place'] = places[places.index(item)]
+    entry['warning/forecast'] = forecasts_text[places.index(item)]
+
+print(entry)
 print(title)
 print(warnings_forecasts)
 print(len(places))
