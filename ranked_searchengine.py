@@ -5,19 +5,19 @@ from bs4 import BeautifulSoup as bs
 import numpy as np
 
 
-ARTICLES_FILENAME = "fiwiki-20181001-corpus.truncated.txt"
+ARTICLES_FILE = "data/fiwiki-20181001-corpus.truncated.txt"
 
 
 def get_articles():
     try:
-        with open(ARTICLES_FILENAME) as file:
+        with open(ARTICLES_FILE) as file:
             soup = bs(file, 'html.parser')
         articles = []
         for article in soup.find_all('article'):
             articles.append(article.get_text(strip=True))
         return articles
     except OSError:
-        print("Error trying to read from file {:s}!".format(ARTICLES_FILENAME))
+        print("Error trying to read from file {:s}!".format(ARTICLES_FILE))
 
 
 def get_query():

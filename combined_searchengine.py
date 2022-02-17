@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -7,7 +7,7 @@ import numpy as np
 
 D = {"and": "&", "or": "|", "not": "1 -", "(": "(", ")": ")"}
 
-ARTICLES_FILENAME = "fiwiki-20181001-corpus.truncated.txt"
+ARTICLES_FILE = "data/fiwiki-20181001-corpus.truncated.txt"
 
 
 def get_engine():
@@ -24,14 +24,14 @@ def get_engine():
 
 def get_article_dicts():
     try:
-        with open(ARTICLES_FILENAME) as file:
+        with open(ARTICLES_FILE) as file:
             soup = bs(file, 'html.parser')
         article_dicts = []
         for article in soup.find_all('article'):
             article_dicts.append({"name":article['name'], "content":article.get_text(strip=True)})
         return article_dicts
     except OSError:
-        print("Error trying to read from file {:s}!".format(ARTICLES_FILENAME))
+        print("Error trying to read from file {:s}!".format(ARTICLES_FILE))
 
 
 def get_lowercase_query():

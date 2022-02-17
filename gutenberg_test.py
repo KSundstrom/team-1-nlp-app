@@ -1,4 +1,6 @@
-from urllib import request    
+#!/usr/bin/env python3
+
+from urllib import request
 import re
 
 url = "https://www.gutenberg.org/cache/epub/1041/pg1041.txt"
@@ -17,7 +19,5 @@ for poem in sonnets:
         poem_with_title = previous_line.append(without_title)
         previous_line = ""
         with_title.append(poem_with_title)
-                              
-    
-print(with_title) 
 
+print(with_title)

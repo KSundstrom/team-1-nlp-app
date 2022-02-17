@@ -8,13 +8,13 @@ import numpy as np
 
 app = Flask(__name__)
 
-ARTICLES_FILENAME = "fiwiki-20181001-corpus.truncated.txt"
+ARTICLES_FILE = "data/fiwiki-20181001-corpus.truncated.txt"
 
 
 def get_article_dicts():
     article_dicts = []
     try:
-        with open(ARTICLES_FILENAME) as file:
+        with open(ARTICLES_FILE) as file:
             soup = bs(file, 'html.parser')
         for article in soup.find_all('article'):
             article_dicts.append({'name':article['name'], 'content':article.get_text(strip=True)})
@@ -45,4 +45,4 @@ def search():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)

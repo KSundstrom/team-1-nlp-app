@@ -12,7 +12,7 @@ D = {"and": "&", "AND": "&",
      "not": "1 -", "NOT": "1 -",
      "(": "(", ")": ")"}
 
-ARTICLES_FILENAME = "fiwiki-20181001-corpus.truncated.txt"
+ARTICLES_FILE = "data/fiwiki-20181001-corpus.truncated.txt"
 
 SONNETS_URL = "https://www.gutenberg.org/cache/epub/1041/pg1041.txt"
 
@@ -31,14 +31,14 @@ def get_source():
 
 def get_articles():
     try:
-        with open(ARTICLES_FILENAME) as file:
+        with open(ARTICLES_FILE) as file:
             soup = BeautifulSoup(file, 'html.parser')
         articles = []
         for article in soup.find_all('article'):
             articles.append(article.get_text(strip=True))
         return articles
     except OSError:
-        print("Error trying to read from file {:s}!".format(ARTICLES_FILENAME))
+        print("Error trying to read from file {:s}!".format(ARTICLES_FILE))
 
 
 def get_sonnets():

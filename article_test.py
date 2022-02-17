@@ -10,19 +10,19 @@ D = {"and": "&", "AND": "&",
      "not": "1 -", "NOT": "1 -",
      "(": "(", ")": ")"}
 
-ARTICLES_FILENAME = "enwiki-20181001-corpus.1000-articles.txt"
+ARTICLES_FILE = "data/enwiki-20181001-corpus.1000-articles.txt"
 
 
 def get_articles():
     try:
-        with open(ARTICLES_FILENAME) as file:
+        with open(ARTICLES_FILE) as file:
             soup = BeautifulSoup(file, 'html.parser')
         articles = []
         for article in soup.find_all('article'):
             articles.append(article.get_text(strip=True))
         return articles
     except OSError:
-        print("Error trying to read from file {:s}!".format(ARTICLES_FILENAME))
+        print("Error trying to read from file {:s}!".format(ARTICLES_FILE))
 
 
 def get_query():
