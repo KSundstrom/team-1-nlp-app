@@ -46,17 +46,15 @@ def visualise_search(input_dict):
         x = "hit",
         y = "score",
     )
+
     for ind, label in enumerate(plot.get_xticklabels()):
         if ind % 10 == 0:  # every 10th label is kept
             label.set_visible(True)
         else:
             label.set_visible(False)
 
-    for ind, label in enumerate(plot.get_yticklabels()):
-        if ind % 10 == 0:  # every 10th label is kept
-            label.set_visible(True)
-        else:
-            label.set_visible(False)
+    plot.set(yticks=np.arange(0, 1, step= 0.01))
+
     return plt.show()
 
 
