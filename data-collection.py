@@ -2,6 +2,9 @@
 
 from bs4 import BeautifulSoup
 import requests
+import datetime
+#import pymongo
+import json
 
 HTML_PAGE = requests.get('https://en.ilmatieteenlaitos.fi/weather-and-sea')
 
@@ -35,18 +38,28 @@ title = h1_list[0]
 warnings_forecasts = h2_list[:-1]
 places = h3_list[:-7]
 forecasts_text = p_list[1:-8]
-
-entry = {}
-entry['title'] = title
+    
+seen_before = []
+entries = []
 for item in places:
-    entry['place'] = places[places.index(item)]
-    entry['warning/forecast'] = forecasts_text[places.index(item)]
+    forecast = {}
+    forecast['title'] = title
+    forecast['place'] = item
+    if item in seen_before:
+        forecast['forecast'] = "forecast"
+    else:
+        forecast['forecast'] = "warning"
+        seen_before.append(item)
+    forecast['forecast text'] = forecasts_text[places.index(item)]
+    entries.append(forecast)
 
-print(entry)
-print(title)
-print(warnings_forecasts)
-print(len(places))
-print(len(forecasts_text))
+entries_json = json.dumps(entries, indent = 4)
+print(entries_json)
+print(seen_before)      
+#print(title)
+#print(warnings_forecasts)
+#print(len(places))
+#print(len(forecasts_text))
 
 #print(h1_list)
 #print(h2_list)
