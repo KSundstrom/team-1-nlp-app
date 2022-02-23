@@ -41,11 +41,22 @@ def visualise_search(input_dict):
 
     matches_df = pd.DataFrame.from_dict(input_dict)
     sns.set_theme()
-    sns.relplot(
+    plot = sns.histplot(
         data=matches_df,
         x = "hit",
         y = "score",
     )
+    for ind, label in enumerate(plot.get_xticklabels()):
+        if ind % 10 == 0:  # every 10th label is kept
+            label.set_visible(True)
+        else:
+            label.set_visible(False)
+
+    for ind, label in enumerate(plot.get_yticklabels()):
+        if ind % 10 == 0:  # every 10th label is kept
+            label.set_visible(True)
+        else:
+            label.set_visible(False)
     return plt.show()
 
 
