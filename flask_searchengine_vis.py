@@ -40,8 +40,8 @@ def visualise_search(input_dict):
     import matplotlib.pyplot as plt
 
     matches_df = pd.DataFrame.from_dict(input_dict)
-    sns.set_theme()
-    plot = sns.histplot(
+    #sns.set_theme()
+    plot = sns.lineplot(
         data=matches_df,
         x = "hit",
         y = "score",
@@ -53,7 +53,7 @@ def visualise_search(input_dict):
         else:
             label.set_visible(False)
 
-    plot.set(yticks=np.arange(0, 1, step= 0.01))
+    #plot.set(yticks=np.arange(0, 1, step= 0.01))
 
     return plt.show()
 
