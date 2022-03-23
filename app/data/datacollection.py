@@ -2,12 +2,12 @@
 
 from bs4 import BeautifulSoup
 import requests
-import datetime
-#import pymongo
+from datetime import date
+import pymongo
 import json
 
 HTML_PAGE = requests.get('https://en.ilmatieteenlaitos.fi/weather-and-sea')
-
+#client = pymongo.MongoClient(<Atlas connection string>)
 
 # Get the web page and select the appropriate div.
 soup = BeautifulSoup(HTML_PAGE.content, 'html.parser')
@@ -43,19 +43,21 @@ seen_before = []
 entries = []
 for item in places:
     forecast = {}
+    forecast['date'] = date.today().strftime("%d/%m/%Y")
     forecast['title'] = title
     forecast['place'] = item
-    if item in seen_before:
+    if seen_before:
         forecast['forecast'] = "forecast"
     else:
         forecast['forecast'] = "warning"
-        seen_before.append(item)
+        if item.lower() == "inference":
+            seen_before.append(item)
     forecast['forecast text'] = forecasts_text[places.index(item)]
     entries.append(forecast)
 
 entries_json = json.dumps(entries, indent = 4)
 print(entries_json)
-print(seen_before)      
+#print(seen_before)      
 #print(title)
 #print(warnings_forecasts)
 #print(len(places))
