@@ -4,7 +4,7 @@
 from bs4 import BeautifulSoup as bs
 
 
-def main(vectorizer, sourcepath):
+def index(vectorizer, sourcepath):
     document_dictionaries = []
     with open(sourcepath) as file:
         soup = bs(file, 'lxml')

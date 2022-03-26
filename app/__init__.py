@@ -8,14 +8,14 @@ app = Flask(__name__)
 
 
 #from app.data import datacollection
-from app.functionality.indexing import main as index
-from app.functionality.search import main as search
-from app.functionality.visualisation import main as visualise
+from app.functionality.indexing import index
+from app.functionality.search import search
+from app.functionality.visualisation import visualise
 from sklearn.feature_extraction.text import TfidfVectorizer
 
 
 VECTORIZER = TfidfVectorizer(lowercase = True, sublinear_tf = True, use_idf = True, norm = "l2")
-TEST_SOURCE_PATH = "app/testcorpus.txt"
+TEST_SOURCE_PATH = "app/static/testcorpus.txt"
 
 
 #datacollection

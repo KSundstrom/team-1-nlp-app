@@ -4,7 +4,7 @@
 import numpy as np
 
 
-def main(vectorizer, document_dictionaries, document_matrix, query):
+def search(vectorizer, document_dictionaries, document_matrix, query):
     matches = []
     query_vector = vectorizer.transform([query]).tocsc()
     hits = np.dot(query_vector, document_matrix)
