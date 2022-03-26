@@ -5,7 +5,7 @@ Team 1's repo for Uni Helsinki course Building Natural Language Processing Appli
 ## Running the application on your local computer
 
 * Install the dependencies described in the `environment.yml`
-* Set the environment variable `FLASK_APP` to `flask_weather.py` with `export FLASK_APP="flask_weather.py"`
+* Set the environment variable `FLASK_APP` to `run.py` with `export FLASK_APP="run.py"`
 * Run Flask with `flask run`
 * The site should appear at `localhost:5000` in your browser
 * Turn off the server with `Ctrl+C`

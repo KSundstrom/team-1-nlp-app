@@ -4,15 +4,13 @@
 from bs4 import BeautifulSoup
 import requests
 from datetime import date
-import pymongo
 import json
 
 
 HTML_PAGE = requests.get('https://en.ilmatieteenlaitos.fi/weather-and-sea')
-#client = pymongo.MongoClient(<Atlas connection string>)
 
 
-# Get the web page and select the appropriate div.
+# Get the web page and select the appropriate div
 soup = BeautifulSoup(HTML_PAGE.content, 'html.parser')
 select = soup.find('div', class_="col-lg-9 px-0")
 
