@@ -7,30 +7,29 @@ from flask import Flask, render_template, request
 app = Flask(__name__)
 
 
+#from app.data import datacollection
+from app.functionality.indexing import main as index
+from app.functionality.search import main as search
+from app.functionality.visualisation import main as visualise
 from sklearn.feature_extraction.text import TfidfVectorizer
-from app import app
-#import data
-#import indexing
-#import search
-#import visualisation
 
 
 VECTORIZER = TfidfVectorizer(lowercase = True, sublinear_tf = True, use_idf = True, norm = "l2")
-TEST_SOURCE_PATH = "testcorpus.txt"
+TEST_SOURCE_PATH = "app/testcorpus.txt"
 
 
 #datacollection
-#document_dictionaries, document_matrix = indexingengine(VECTORIZER, TEST_SOURCE_PATH)
+document_dictionaries, document_matrix = index(VECTORIZER, TEST_SOURCE_PATH)
 
 
 @app.route('/')
-def index():
+def main():
     query = request.args.get('query')
+    matches = []
     if query:
         try:
-            pass
-            #matches = searchengine(VECTORIZER, document_dictionaries, document_matrix, query)
-            #visualisationengine
+            matches = search(VECTORIZER, document_dictionaries, document_matrix, query)
+            #visualise(matches)
         except:
             pass
     return render_template('index.html', matches = matches)
