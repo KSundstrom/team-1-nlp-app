@@ -1,13 +1,16 @@
 #!/usr/bin/env python3
 
+
 from bs4 import BeautifulSoup
 import requests
 from datetime import date
 import pymongo
 import json
 
+
 HTML_PAGE = requests.get('https://en.ilmatieteenlaitos.fi/weather-and-sea')
 #client = pymongo.MongoClient(<Atlas connection string>)
+
 
 # Get the web page and select the appropriate div.
 soup = BeautifulSoup(HTML_PAGE.content, 'html.parser')
@@ -38,7 +41,7 @@ title = h1_list[0]
 warnings_forecasts = h2_list[:-1]
 places = h3_list[:-7]
 forecasts_text = p_list[1:-8]
-    
+
 seen_before = []
 entries = []
 for item in places:
@@ -57,7 +60,7 @@ for item in places:
 
 entries_json = json.dumps(entries, indent = 4)
 print(entries_json)
-#print(seen_before)      
+#print(seen_before)
 #print(title)
 #print(warnings_forecasts)
 #print(len(places))
@@ -67,8 +70,3 @@ print(entries_json)
 #print(h2_list)
 #print(h3_list)
 #print(p_list)
- 
-
-
-
-

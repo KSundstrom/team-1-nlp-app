@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from flask import Flask, render_template, request
+
 from bs4 import BeautifulSoup as bs
 from sklearn.feature_extraction.text import TfidfVectorizer
 import numpy as np
@@ -19,8 +19,7 @@ tv = TfidfVectorizer(lowercase=True, sublinear_tf=True, use_idf=True, norm="l2")
 t_matrix = tv.fit_transform(documents).T.tocsr()
 
 
-def search_dict():
-    query = input("Search for: ")
+def match(query):
     matches = []
     if query:
         try:
@@ -32,34 +31,3 @@ def search_dict():
         except:
             pass
     return matches
-
-def visualise_search(input_dict):
-    import seaborn as sns
-    import pandas as pd
-    import numpy as np 
-    import matplotlib.pyplot as plt
-
-    matches_df = pd.DataFrame.from_dict(input_dict)
-    #sns.set_theme()
-    plot = sns.lineplot(
-        data=matches_df,
-        x = "hit",
-        y = "score",
-    )
-
-    for ind, label in enumerate(plot.get_xticklabels()):
-        if ind % 10 == 0:  # every 10th label is kept
-            label.set_visible(True)
-        else:
-            label.set_visible(False)
-
-    #plot.set(yticks=np.arange(0, 1, step= 0.01))
-
-    return plt.show()
-
-
-
-if __name__ == "__main__":
-    matches = search_dict()
-    visualise_search(matches)
-

@@ -1,13 +1,12 @@
 #!/usr/bin/env python3
 
-from flask import Flask, render_template, request
+
 from bs4 import BeautifulSoup as bs
 from sklearn.feature_extraction.text import TfidfVectorizer
 import numpy as np
 
-ARTICLES_FILE = "data/enwiki-20181001-corpus.1000-articles.txt"
 
-app = Flask(__name__)
+ARTICLES_FILE = "data/enwiki-20181001-corpus.1000-articles.txt"
 
 
 document_dicts = []
@@ -20,9 +19,7 @@ tv = TfidfVectorizer(lowercase=True, sublinear_tf=True, use_idf=True, norm="l2")
 t_matrix = tv.fit_transform(documents).T.tocsr()
 
 
-@app.route('/')
-def search():
-    query = request.args.get('query')
+def match(query):
     matches = []
     if query:
         try:
@@ -33,8 +30,4 @@ def search():
                 matches.append({'hit':"{:d}".format(i+1), 'score':"{:.4f}".format(score), 'name':"{:s}".format(document_dicts[id]['name']), 'content':"{:.100s}…".format(document_dicts[id]['content'])})
         except:
             pass
-    return render_template('index.html', matches = matches)
-
-
-if __name__ == '__main__':
-    app.run(debug = False)
+    return matches

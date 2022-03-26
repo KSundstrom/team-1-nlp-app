@@ -10,7 +10,7 @@ D = {"and": "&", "AND": "&",
      "not": "1 -", "NOT": "1 -",
      "(": "(", ")": ")"}
 
-ARTICLES_FILE = "../data/enwiki-20181001-corpus.1000-articles.txt"
+ARTICLES_FILE = "data/enwiki-20181001-corpus.1000-articles.txt"
 
 
 def get_articles():
