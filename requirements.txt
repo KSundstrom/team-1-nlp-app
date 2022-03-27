@@ -35,7 +35,7 @@ requests
 scikit-learn
 scipy 
 seaborn 
-sip==4.19.13
+sip
 six 
 soupsieve 
 threadpoolctl 
