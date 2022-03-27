@@ -26,7 +26,7 @@ numpy @ file:///tmp/build/80754af9/numpy_and_numpy_base_1634095651905/work
 olefile @ file:///Users/ktietz/demo/mc3/conda-bld/olefile_1629805411829/work
 packaging @ file:///tmp/build/80754af9/packaging_1637314298585/work
 pandas==1.4.1
-Pillow==8.4.0
+Pillow==9.0.1
 pycparser @ file:///tmp/build/80754af9/pycparser_1636541352034/work
 pyOpenSSL @ file:///opt/conda/conda-bld/pyopenssl_1643788558760/work
 pyparsing @ file:///tmp/build/80754af9/pyparsing_1635766073266/work
