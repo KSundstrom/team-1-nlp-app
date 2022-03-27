@@ -12,7 +12,7 @@
         <main>
             <div class="container p-3">
                 <header class="container p-3 border-bottom">
-                    <h1>TF-IDF cosine-similarity search engine</h1>
+                    <h1>Weather forecast for shipping TF-IDF cosine-similarity search engine</h1>
                 </header>
                 <section class="container p-3">
                     <form>
@@ -22,13 +22,15 @@
                 </section>
                 <section class="container p-3">
                     <table class="table">
-                        <caption class="">Results</caption>
                         <thead>
                             <tr>
                                 <th scope="col">Hit #</th>
                                 <th scope="col">Score</th>
-                                <th scope="col">Document name</th>
-                                <th scope="col">Document content</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">Title</th>
+                                <th scope="col">Location</th>
+                                <th scope="col">Type</th>
+                                <th scope="col">Content</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -41,10 +43,19 @@
                                     {{ item['score'] }}
                                 </td>
                                 <td>
-                                    {{ item['name'] }}
+                                    {{ item['date'] }}
                                 </td>
                                 <td>
-                                    {{ item['content'] }}
+                                    {{ item['title'] }}
+                                </td>
+                                <td>
+                                    {{ item['place'] }}
+                                </td>
+                                <td>
+                                    {{ item['forecast'] }}
+                                </td>
+                                <td>
+                                    {{ item['forecast text'] }}
                                 </td>
                             </tr>
                             {% endfor %}
