@@ -7,7 +7,6 @@ from flask import Flask, render_template, request
 app = Flask(__name__, template_folder='templates')
 
 
-#from app.data import datacollection
 from app.functionality.indexing import index
 from app.functionality.search import search
 from app.functionality.visualisation import visualise
@@ -15,11 +14,10 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 
 
 VECTORIZER = TfidfVectorizer(lowercase = True, sublinear_tf = True, use_idf = True, norm = "l2")
-TEST_SOURCE_PATH = "app/static/testcorpus.txt"
+DATA = "app/data/data.json"
 
 
-#datacollection
-document_dictionaries, document_matrix = index(VECTORIZER, TEST_SOURCE_PATH)
+data_dictionaries, data_matrix = index(VECTORIZER, DATA)
 
 
 @app.route('/')
@@ -28,7 +26,7 @@ def main():
     matches = []
     if query:
         try:
-            matches = search(VECTORIZER, document_dictionaries, document_matrix, query)
+            matches = search(VECTORIZER, data_dictionaries, data_matrix, query)
             #visualise(matches)
         except:
             pass
