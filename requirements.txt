@@ -9,7 +9,6 @@ cryptography
 cycler 
 Flask 
 fonttools==4.25.0
-gunicorn 
 idna 
 itsdangerous 
 Jinja2 
