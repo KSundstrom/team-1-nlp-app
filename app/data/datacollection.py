@@ -57,9 +57,16 @@ for item in places:
     forecast['forecast text'] = forecasts_text[places.index(item)]
     entries.append(forecast)
 
-with open(FILENAME, "a", encoding="utf-8") as jsondata:
-    jsondata.write(json.dumps(entries))
-    jsondata.close()
+existing_data = []    
+with open(FILENAME) as fp:
+    existing_data = json.load(fp)
+print(existing_data)
+
+for entry in entries:
+    existing_data.append(entry)
+
+with open(FILENAME, "w") as updated_file:
+    json.dump(existing_data, updated_file, indent=4)
 
 
 #for entry in new_data_added:
