@@ -1,3 +1,4 @@
+nomkl
 beautifulsoup4 
 Bottleneck
 brotlipy==0.7.0
