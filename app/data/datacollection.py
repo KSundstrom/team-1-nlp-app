@@ -58,7 +58,7 @@ for item in places:
     entries.append(forecast)
 
 with open(FILENAME, "a", encoding="utf-8") as jsondata:
-    jsondata.write(json.dumps(entries, indent = 4))
+    jsondata.write(json.dumps(entries))
     jsondata.close()
 
 
