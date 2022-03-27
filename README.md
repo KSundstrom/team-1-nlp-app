@@ -1,6 +1,6 @@
 # team-1-nlp-app
 
-Team 1's repo for Uni Helsinki course Building Natural Language Processing Applications 2022. The webapp can be found at (http://team-1-nlp-app.herokuapp.com). The documentation here concerns mostly those who wish to install the program locally and/or tinker with it.
+Team 1's repo for Uni Helsinki course Building Natural Language Processing Applications 2022. The webapp can be found at http://team-1-nlp-app.herokuapp.com. The documentation here concerns mostly those who wish to install the program locally and/or tinker with it.
 
 ## Running the application on your local computer
 
