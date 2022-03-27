@@ -27,7 +27,7 @@ def main():
     if query:
         try:
             matches = search(VECTORIZER, data_dictionaries, data_matrix, query)
-            #visualise(matches)
+            visualise(matches)
         except:
             pass
     return render_template('index.html', matches = matches)

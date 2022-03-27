@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 
 
+import matplotlib.pyplot as plt
 import seaborn as sns
 import pandas as pd
-import matplotlib.pyplot as plt
 
 
 def visualise(matches):
@@ -14,4 +14,4 @@ def visualise(matches):
             label.set_visible(True)
         else:
             label.set_visible(False)
-    return plt.show()
+    plt.savefig("app/static/plot.png")
