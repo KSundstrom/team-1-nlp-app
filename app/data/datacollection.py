@@ -8,6 +8,7 @@ import json
 
 
 HTML_PAGE = requests.get('https://en.ilmatieteenlaitos.fi/weather-and-sea')
+FILENAME = "data.json"
 
 
 # Get the web page and select the appropriate div
@@ -56,8 +57,19 @@ for item in places:
     forecast['forecast text'] = forecasts_text[places.index(item)]
     entries.append(forecast)
 
-entries_json = json.dumps(entries, indent = 4)
-print(entries_json)
+with open(FILENAME, "a", encoding="utf-8") as jsondata:
+    jsondata.write(json.dumps(entries, indent = 4))
+    jsondata.close()
+
+
+#for entry in new_data_added:
+ #   output_file.write(entry)
+
+#output_file.close()
+
+
+
+#print(entries_json)
 #print(seen_before)
 #print(title)
 #print(warnings_forecasts)
